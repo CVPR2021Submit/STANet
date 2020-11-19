@@ -9,7 +9,7 @@ in its infancy. At present, only a few visual-audio sequences have been furnishe
 1.download the official pretrained model [model]net = torch.hub.load('facebookresearch/WSL-Images','resnext101_32x8d_wsl') of ResNeXt implemented in Pytorch if you want to train the network again.
 2.download or put the AVE datasets, AVAD, DIEM, SumMe, ETMD, Coutrot1, Coutort2(Google drive) in the folder of data for training or test.
 ## training
-stage1.Scoarse, STcoarse, SAcoarse
+stage1.S<sub>coarse</sub>, ST<sub>coarse</sub>, SA<sub>coarse</sub>. 
 stage2.
 stage3.
 you may revise the TAG and SAVEPATH defined in the train.py. After the preparation, run this command
