@@ -10,7 +10,7 @@ in its infancy. At present, only a few visual-audio sequences have been furnishe
 2.download or put the AVE datasets, AVAD, DIEM, SumMe, ETMD, Coutrot1, Coutort2(Google drive) in the folder of data for training or test.
 ## training
 stage1.S<sub>coarse</sub>, ST<sub>coarse</sub>, SA<sub>coarse</sub>. 
-stage2.
+stage2.S<sub>fine</sub>, ST<sub>fine</sub>, SA<sub>fine</sub>. 
 stage3.
 you may revise the TAG and SAVEPATH defined in the train.py. After the preparation, run this command
 python train.py
