@@ -10,10 +10,9 @@ Thanks to the rapid advances in the deep learning techniques and the wide availa
 1.download the official pretrained model [model]net = torch.hub.load('facebookresearch/WSL-Images','resnext101_32x8d_wsl') of ResNeXt implemented in Pytorch if you want to train the network again.  
 2.download or put the AVE datasets, AVAD, DIEM, SumMe, ETMD, Coutrot1, Coutort2(Google drive) in the folder of data for training or test.  
 ## training
-stage1.S<sub>coarse</sub>, ST<sub>coarse</sub>, SA<sub>coarse</sub>.  
-stage2.S<sub>fine</sub>, ST<sub>fine</sub>, SA<sub>fine</sub>.   
-stage3.
-you may revise the TAG and SAVEPATH defined in the train.py. After the preparation, run this command  
+- stage1.S<sub>coarse</sub>, ST<sub>coarse</sub>, SA<sub>coarse</sub>.  
+- stage2.S<sub>fine</sub>, ST<sub>fine</sub>, SA<sub>fine</sub>.   
+- stage3.STANet  
 python train.py  
 ## testing 
 After the preparation, run this commond  
