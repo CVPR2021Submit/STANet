@@ -24,7 +24,7 @@ The saliency maps are also available (Baidu Netdisk).
 ## Evaluation
 We provide the evaluation code in the folder "eval_code" for fair comparisons.   
 You may need to revise the algorithms, data_root, and maps_root defined in the main.m.   
-The saliency maps of the competitors are provided (Baidu Netdisk).  
+The saliency maps of the competitors(ITTI, GBVS, SCLI, AWS-D, SBF, WSS, MWS, WSSA) are provided (Baidu Netdisk).  
 Quantitative comparisons:  
 ![Quantitative](https://github.com/CVPR2021Submit/STANet/blob/main/fig/cvpr2021.gif)  
 Qualitative comparisons:  
