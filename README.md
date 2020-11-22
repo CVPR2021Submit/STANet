@@ -9,7 +9,7 @@ Thanks to the rapid advances in the deep learning techniques and the wide availa
 ## Preparation
 1.Download the official pretrained model 
 `net = torch.hub.load('facebookresearch/WSL-Images','resnext101_32x8d_wsl')`
-of ResNeXt implemented in Pytorch, and vggsound model net = torch.load('vggsound_netvlad')  if you want to train/test the network.  
+of ResNeXt implemented in Pytorch, and `vggsound model net = torch.load('vggsound_netvlad')` [vggsound](https://github.com/hche11/VGGSound) if you want to train/test the network.  
 2.Download and put the AVE datasets, AVAD, DIEM, SumMe, ETMD, Coutrot1, Coutort2(Google drive) in the folder of data for training or test.  
 ## Training
 - Stage 1. Train the model of S<sub>coarse</sub>, ST<sub>coarse</sub>, SA<sub>coarse</sub> respectively.  
