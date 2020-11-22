@@ -28,4 +28,4 @@ The saliency maps of the competitors are provided (Baidu Netdisk).
 Quantitative comparisons:  
 ![Quantitative](https://github.com/CVPR2021Submit/STANet/blob/main/fig/cvpr2021.gif)  
 Qualitative comparisons:  
-
+![Quantitative](https://github.com/CVPR2021Submit/STANet/blob/main/fig/compare.gif)  
