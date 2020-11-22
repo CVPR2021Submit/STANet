@@ -28,9 +28,9 @@ The saliency maps are also available (Baidu Netdisk).
 We use the evaluation code in the paper of [STAVIS](https://github.com/atsiami/STAViS) for fair comparisons.   
 You may need to revise the algorithms, data_root, and maps_root defined in the main.m.   
 The saliency maps of the competitors(ITTI, GBVS, SCLI, AWS-D, SBF, WSS, MWS, WSSA) are provided (Baidu Netdisk).  
-Quantitative comparisons:  
+### Quantitative comparisons:  
 ![Quantitative](https://github.com/CVPR2021Submit/STANet/blob/main/fig/cvpr2021.gif)  
-Qualitative comparisons:  
+### Qualitative comparisons:  
 ![Quantitative](https://github.com/CVPR2021Submit/STANet/blob/main/fig/compare.gif)  
 ## References
 [1][Tsiami, A., Koutras, P., Maragos, P.STAViS: Spatio-Temporal AudioVisual Saliency Network. (CVPR 2020).](https://openaccess.thecvf.com/content_CVPR_2020/papers/Tsiami_STAViS_Spatio-Temporal_AudioVisual_Saliency_Network_CVPR_2020_paper.pdf)  
