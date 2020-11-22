@@ -33,4 +33,7 @@ Quantitative comparisons:
 Qualitative comparisons:  
 ![Quantitative](https://github.com/CVPR2021Submit/STANet/blob/main/fig/compare.gif)  
 ## References
-[1][ A. Tsiami, P. Koutras and P. Maragos. STAViS: Spatio-Temporal AudioVisual Saliency Network. CVPR 2020.](https://openaccess.thecvf.com/content_CVPR_2020/html/Tsiami_STAViS_Spatio-Temporal_AudioVisual_Saliency_Network_CVPR_2020_paper.html)
+[1][Tsiami, A., Koutras, P., Maragos, P.STAViS: Spatio-Temporal AudioVisual Saliency Network. (CVPR 2020).](https://openaccess.thecvf.com/content_CVPR_2020/papers/Tsiami_STAViS_Spatio-Temporal_AudioVisual_Saliency_Network_CVPR_2020_paper.pdf)
+[2][Tian, Y., Shi, J., Li, B., Duan, Z., Xu, C. Audio-Visual Event Localization in Unconstrained Videos. (ECCV 2018)](https://openaccess.thecvf.com/content_ECCV_2018/papers/Yapeng_Tian_Audio-Visual_Event_Localization_ECCV_2018_paper.pdf)
+[3][Chen, H., Xie, W., Vedaldi, A., & Zisserman, A. Vggsound: A Large-Scale Audio-Visual Dataset. (ICASSP 2020)]
+(https://www.robots.ox.ac.uk/~vgg/publications/2020/Chen20/chen20.pdf)
