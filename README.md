@@ -20,7 +20,7 @@ of ResNeXt implemented in Pytorch, and [vggsound](https://github.com/hche11/VGGS
 - Stage 3. Train the model of STANet using the pseudoGT.    
 ## Testing 
 After the preparation, run this commond  
-python test.py  
+`python test.py`  
 We provide the trained model file (Baidu Netdisk).
 The saliency maps are also available (Baidu Netdisk).  
 ## Evaluation
