@@ -18,17 +18,19 @@ of ResNeXt implemented in Pytorch, and [vggsound](https://github.com/hche11/VGGS
 - Stage 2. Test the model of S<sub>coarse</sub>, ST<sub>coarse</sub>, SA<sub>coarse</sub> respectively using original AVE frames.  
 - Stage 3. Train the model of S<sub>fine</sub>, ST<sub>fine</sub>, SA<sub>fine</sub> respectively using the crop data of AVE.   
 - Stage 4. Test the model of S<sub>fine</sub>, ST<sub>fine</sub>, SA<sub>fine</sub> using the crop data respectively and generate the pseudoGT of AVE dataset.   
-- Stage 3. Train the model of STANet using the original AVE frames with generated pseudoGT.    
+- Stage 5. Train the model of STANet using the original AVE frames with generated pseudoGT.    
 ## Testing 
 After the preparation, run this commond  
 `python test.py`  
 We provide the trained model file (Baidu Netdisk).
 The saliency maps are also available (Baidu Netdisk).  
 ## Evaluation
-We provide the evaluation code in the folder "eval_code" for fair comparisons.   
+We use the evaluation code in the paper of [STAVIS](https://github.com/atsiami/STAViS) for fair comparisons.   
 You may need to revise the algorithms, data_root, and maps_root defined in the main.m.   
 The saliency maps of the competitors(ITTI, GBVS, SCLI, AWS-D, SBF, WSS, MWS, WSSA) are provided (Baidu Netdisk).  
 Quantitative comparisons:  
 ![Quantitative](https://github.com/CVPR2021Submit/STANet/blob/main/fig/cvpr2021.gif)  
 Qualitative comparisons:  
 ![Quantitative](https://github.com/CVPR2021Submit/STANet/blob/main/fig/compare.gif)  
+## References
+[1][ A. Tsiami, P. Koutras and P. Maragos. STAViS: Spatio-Temporal AudioVisual Saliency Network. CVPR 2020.](https://openaccess.thecvf.com/content_CVPR_2020/html/Tsiami_STAViS_Spatio-Temporal_AudioVisual_Saliency_Network_CVPR_2020_paper.html)
