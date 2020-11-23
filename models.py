@@ -31,7 +31,6 @@ class att_Net(nn.Module):
         self.atten_conv = nn.Conv2d(64, 64, 1)
         self.attention = nn.Conv2d(64, 1, 1)
         self.Vatten_conv = nn.Conv2d(64, 64, 1)
-        self.Afc = nn.Linear(8192, 2)
         net = torch.hub.load('facebookresearch/WSL-Images',
                              'resnext101_32x8d_wsl')
         net = list(net.children())
@@ -48,7 +47,6 @@ class att_Net(nn.Module):
         self.refineV33 = nn.Conv2d(64, 32, kernel_size=3, padding=1)
         self.refineV22 = nn.Conv2d(64, 32, kernel_size=3, padding=1)
         self.predictF = nn.Conv2d(32, 1, 1)
-
     def forward(self, audio, video):
         layerV_0 = self.layerV_0(video.view(video.size(
             0)*video.size(1), video.size(2), video.size(3), video.size(4)))
