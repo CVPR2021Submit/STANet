@@ -22,12 +22,12 @@ of ResNeXt implemented in Pytorch, and [vggsound](https://github.com/hche11/VGGS
 ## Testing 
 After the preparation, run this commond  
 `python test.py`  
-We provide the trained model file ([Baidu Netdisk](https://pan.baidu.com/s/1xhnAkeC_QinVLIF3g4MI5A)code:r0w0).
-The saliency maps are also available ([Baidu Netdisk](https://pan.baidu.com/s/1xhnAkeC_QinVLIF3g4MI5A)code:r0w0).  
+We provide the trained model file ([Baidu Netdisk](https://pan.baidu.com/s/1xhnAkeC_QinVLIF3g4MI5A), code:r0w0).
+The saliency maps are also available ([Baidu Netdisk](https://pan.baidu.com/s/1xhnAkeC_QinVLIF3g4MI5A), code:r0w0).  
 ## Evaluation
 We use the evaluation code in the paper of [STAVIS](https://github.com/atsiami/STAViS) for fair comparisons.   
 You may need to revise the algorithms, data_root, and maps_root defined in the main.m.   
-The saliency maps of the competitors(ITTI, GBVS, SCLI, AWS-D, SBF, WSS, MWS, WSSA) are provided ([Baidu Netdisk](https://pan.baidu.com/s/1xhnAkeC_QinVLIF3g4MI5A)code:r0w0).  
+The saliency maps of the competitors(ITTI, GBVS, SCLI, AWS-D, SBF, WSS, MWS, WSSA) are provided ([Baidu Netdisk](https://pan.baidu.com/s/1xhnAkeC_QinVLIF3g4MI5A), code:r0w0).  
 ### Quantitative comparisons:  
 ![Quantitative](https://github.com/CVPR2021Submit/STANet/blob/main/fig/cvpr2021.gif)  
 ### Qualitative comparisons:  
