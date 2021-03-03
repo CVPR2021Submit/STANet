@@ -35,7 +35,7 @@ def make_dataset(img_path, aud_path):
     path_list = []
     sequ = -1
     ori_name = os.listdir(img_path)
-    for file in range(0, 14):#len(ori_name)):
+    for file in range(0, len(ori_name)):
         print(file)
         ficpath = os.path.join(img_path, ori_name[file])
         ficname = os.listdir(ficpath)
@@ -84,9 +84,9 @@ class ImageFolder(data.Dataset):
         return len(self.imgs)
 
 
-img_path = 'F:\\wgt\\Crop_data\\crop\\'
-aud_path = 'F:\\wgt\\AVE\\AVE_Dataset\\Audio2\\'
-save_path = 'result\\'
+img_path = .\Crop_data\crop\'
+aud_path = '.\AVE\AVE_Dataset\Audio2\'
+save_path = 'result\'
 test_set = ImageFolder(img_path, aud_path, preprocess)
 test_loader = DataLoader(test_set, batch_size=batch_size,
                          num_workers=0, shuffle=False)
@@ -116,12 +116,12 @@ def hook_feature(module, input, output):
 
 to_pil = transforms.ToPILImage()
 # model = att_Model()
-model = torch.load('D:\\wgt\\AVE_master\\modelAV\\14001.pt')
+model = torch.load(.\AVE_master\modelAV\SAfine.pt')
 
 model.cuda().eval()
 model._modules.get('Vatten_conv').register_forward_hook(hook_feature)
 
-filename = 'fenlei.txt'
+filename = 'class.txt'
 with torch.no_grad():
     with open(filename, 'w') as f:
         for num, [audio_pil, img_pil, index, label_name, file_name, img_name] in enumerate(test_loader):
