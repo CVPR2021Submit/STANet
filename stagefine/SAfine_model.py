@@ -45,14 +45,12 @@ class att_Model(nn.Module):
         self.layerV_down = nn.Conv2d(2048, 64, 1)
         self.attention = nn.Conv2d(128, 1, 1)
         self.atten_conv = nn.Conv2d(128, 128, 1)
-        self.atten_pool = nn.AdaptiveAvgPool2d(output_size=(1, 1))
-        self.atten_fc = nn.Linear(128, classes)
 
         self.Vatten_conv = nn.Conv2d(2048, 2048, 1)
         self.Vatten_pool = nn.AdaptiveAvgPool2d(output_size=(1, 1))
         self.Vatten_fc = nn.Linear(2048, classes)
 
-    def forward(self, audio, video):
+    def forward(self, switch, audio, video):
         layerV_0 = self.layerV_0(video)
         layerV_1 = self.layerV_1(layerV_0)
         layerV_2 = self.layerV_2(layerV_1)
@@ -71,14 +69,9 @@ class att_Model(nn.Module):
         Aup2 = self.Aup2(Aup1)
         Aup3 = self.Aup3(Aup2)
         fuse_conv = self.atten_conv(torch.cat((Aup3, self.layerV_down(layerV_4)), dim=1))
-        atten_pool = self.atten_pool(fuse_conv)
-        atten_pool = atten_pool.view(atten_pool.size(0), -1)
-        atten_fc = self.atten_fc(atten_pool)
 
         attention = self.attention(fuse_conv)
-
-        # F.softmax(Afc2, dim=1)[:, 1].unsqueeze(1).unsqueeze(2).unsqueeze(3) *
-        Vattention = F.relu((F.sigmoid(attention) * layerV_4) + layerV_4)
+        Vattention = F.relu((switch[0,1]*F.sigmoid(attention) * layerV_4) + layerV_4)
         Vattention = self.Vatten_conv(Vattention)
         Vatten_pool = self.Vatten_pool(Vattention)
         Vatten_pool = Vatten_pool.view(Vatten_pool.size(0), -1)
