@@ -28,7 +28,7 @@ def make_dataset(ori_path):
                 pv = os.path.join(ori_path, ori_name[file], ficname[fs], picname[picp][:-4]+'.jpg')
                 if os.path.exists(os.path.join(Forg_path_path, ori_name[file], ficname[fs], picname[picp][:-4]+'.jpg')):
                     pa = os.path.join(Audio_path, ori_name[file], ficname[fs], picname[picp][:-4]+'_asp.h5')
-                    path_list.append(pa+'+'+pv+'+'+str(file)+'+'+str(back)+'+'+
+                    path_list.append(pa+'+'+pv+'+'+str(file)+'+'+
                                     ori_name[file]+'+'+ficname[fs]+'+'+picname[picp][:-4]+'.jpg')
     return path_list
 
@@ -61,7 +61,7 @@ class ImageFolder(Dataset):
         ssubfile = img_la[-1]
         video_features_batch = self.transform(video_features)
 
-        return audio_features_batch, video_features_batch, onoroff, indv, inda, file, subfile, ssubfile
+        return audio_features_batch, video_features_batch, indv, inda, file, subfile, ssubfile
 
     def __len__(self):
         return len(self.imgs)
