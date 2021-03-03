@@ -73,12 +73,8 @@ class ImageFolder(Dataset):
     def __len__(self):
         return len(self.imgs)
 
-
-
-# img_path = 'F:\\SALNet\\img\\'
-# save_path = 'F:\\SALNet\\cam\\'
-img_path = 'G:\\AVE-ECCV18-master\\AVE_Dataset\\img2\\'
-save_path = 'result\\'
+img_path = '.\AVE_Dataset\img2\'
+save_path = 'result\'
 test_set = ImageFolder(img_path)
 test_loader = DataLoader(test_set, batch_size=batch_size,
                          num_workers=0, shuffle=False)
@@ -109,7 +105,7 @@ models = torch.load('./51001.pt')
 models._modules.get('refine').register_forward_hook(hook_feature)
 models.cuda().eval()
 
-filename = 'fenlei.txt'
+filename = 'class.txt'
 with torch.no_grad():
     with open(filename, 'w') as f:
         for num, [img_pil, index, label_name, file_name, img_name] in enumerate(test_loader):
