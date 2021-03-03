@@ -13,7 +13,8 @@ Thanks to the rapid advances in the deep learning techniques and the wide availa
 `net = torch.hub.load('facebookresearch/WSL-Images','resnext101_32x8d_wsl')`
 of ResNeXt implemented in Pytorch, and [vggsound](https://github.com/hche11/VGGSound), `net = torch.load('vggsound_netvlad')`, if you want to train/test the network.  
 2.Downloading the [AVE](https://drive.google.com/file/d/1FjKwe79e0u96vdjIVwfRQ1V6SoDHe7kK/view) dataset(the training dataset), [AVAD](https://sites.google.com/site/minxiongkuo/home), [DIEM](https://thediemproject.wordpress.com/videos-and%c2%a0data/), [SumMe](https://gyglim.github.io/me/vsum/index.html#benchmark), [ETMD](http://cvsp.cs.ntua.gr/research/aveyetracking/), [Coutrot](http://antoinecoutrot.magix.net/public/databases.html) datasets(the testing dataset) in the folder of data for training or test.  
-## Note We use Fourier-transformed audio features as input, therefore, we first need to use the function audiostft.py to convert the audio files (.wav) to get the audio features(.h5).
+## Note 
+We use Fourier-transformed audio features as input, therefore, we first need to use the function audiostft.py to convert the audio files (.wav) to get the audio features(.h5).
 ## Training
 - Stage 1. training the model of S<sub>coarse</sub>, ST<sub>coarse</sub>, SA<sub>coarse</sub> respectively using original AVE frames.  
 - Stage 2. testing the model of S<sub>coarse</sub>, ST<sub>coarse</sub>, SA<sub>coarse</sub> respectively using original AVE frames.  
