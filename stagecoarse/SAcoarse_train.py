@@ -64,10 +64,10 @@ def main(args):
         n = 0
         for i, data in enumerate(train_loader):
             start = time.time()
-            audio_inputs, video_inputs, onoroff, labels, labela, file, subfile, ssubfile = data
+            audio_inputs, video_inputs, labels, labela, file, subfile, ssubfile = data
 
-            video_inputs, audio_inputs, labels, labela, onoroff = video_inputs.cuda(
-            ), audio_inputs.unsqueeze(1).cuda(), labels.cuda(), labela.cuda(), onoroff.cuda()
+            video_inputs, audio_inputs, labels, labela = video_inputs.cuda(
+            ), audio_inputs.unsqueeze(1).cuda(), labels.cuda(), labela.cuda()
 
             optimizer.zero_grad()
             scoresFuse = net_model(
