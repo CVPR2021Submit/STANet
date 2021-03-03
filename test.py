@@ -14,7 +14,7 @@ import numpy as np
 import h5py
 import cv2
 import pdb
-import models
+import modelsAVQ
 
 from scipy.ndimage.filters import gaussian_filter
 import time
@@ -24,13 +24,15 @@ scale = 356
 Audio_path = 'E:\\STAViS-master\\data\\audio_feature\\'
 def make_dataset(ori_path):
     path_list = []
+    
     ori_name = os.listdir(ori_path)
-    for file in range(0, len(ori_name)):
+    for file in range(0, 1):#len(ori_name)):
         print(file)
         ficpath = os.path.join(ori_path, ori_name[file])
         ficname = os.listdir(ficpath)
         for fs in range(0, len(ficname)):
             picpath = os.path.join(ficpath, ficname[fs])
+            # path_list.append(picpath)
             picname2 = os.listdir(picpath)
             picname = []
             for yy in picname2:
@@ -77,8 +79,8 @@ class ImageFolder(Dataset):
         return len(self.imgs)
 
 
-img_path = 'E:\\STAViS-master\\data\\video_frames\\'
-save_path = 'results2\\'
+img_path = '.\data\video_frames\'
+save_path = 'results\'
 test_set = ImageFolder(img_path)
 test_loader = DataLoader(test_set, batch_size=batch_size,
                          num_workers=0, shuffle=False)
@@ -88,13 +90,16 @@ features_blobs = []
 to_pil = transforms.ToPILImage()
 model = torch.load('model.pt')
 model.cuda().eval()
+audiocls = torch.load('audiomodel.pt')
+audiocls.cuda().eval()
 
 with torch.no_grad():
     for num, [audio_pil, img_pil, label_name, file_name, img_name] in enumerate(test_loader):
         img_variable = Variable(img_pil).cuda()
         audio_pil = Variable(audio_pil.unsqueeze(1)).cuda()
         t0 = time.time()
-        outputs = model(audio_pil, img_variable)
+        switch = audiocls(audio_pil)
+        outputs = model(audio_pil, img_variable, switch)
         print(time.time() - t0, "seconds wall time")
         for z in range(0, batch_size):
             img = cv2.imread(img_path + label_name[z] + '\\' + \
@@ -116,4 +121,5 @@ with torch.no_grad():
             if not os.path.exists(path):
                 os.mkdir(path)
             #cv2.imwrite(path + img_name[z][:-4] + '.jpg', result)
+            
             cv2.imwrite(path + img_name[z][:-4] + '.jpg', prediction)
