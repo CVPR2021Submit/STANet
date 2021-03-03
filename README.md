@@ -9,16 +9,16 @@ Thanks to the rapid advances in the deep learning techniques and the wide availa
 * soundfile  
 * scipy  
 ## Preparation
-1.Download the official pretrained model 
+1.Downloading the official pretrained model 
 `net = torch.hub.load('facebookresearch/WSL-Images','resnext101_32x8d_wsl')`
 of ResNeXt implemented in Pytorch, and [vggsound](https://github.com/hche11/VGGSound), `net = torch.load('vggsound_netvlad')`, if you want to train/test the network.  
-2.Download and put the [AVE](https://drive.google.com/file/d/1FjKwe79e0u96vdjIVwfRQ1V6SoDHe7kK/view) dataset(the training dataset), [AVAD](https://sites.google.com/site/minxiongkuo/home), [DIEM](https://thediemproject.wordpress.com/videos-and%c2%a0data/), [SumMe](https://gyglim.github.io/me/vsum/index.html#benchmark), [ETMD](http://cvsp.cs.ntua.gr/research/aveyetracking/), [Coutrot](http://antoinecoutrot.magix.net/public/databases.html) datasets(the testing dataset) in the folder of data for training or test.  
+2.Downloading the [AVE](https://drive.google.com/file/d/1FjKwe79e0u96vdjIVwfRQ1V6SoDHe7kK/view) dataset(the training dataset), [AVAD](https://sites.google.com/site/minxiongkuo/home), [DIEM](https://thediemproject.wordpress.com/videos-and%c2%a0data/), [SumMe](https://gyglim.github.io/me/vsum/index.html#benchmark), [ETMD](http://cvsp.cs.ntua.gr/research/aveyetracking/), [Coutrot](http://antoinecoutrot.magix.net/public/databases.html) datasets(the testing dataset) in the folder of data for training or test.  
 ## Training
-- Stage 1. train the model of S<sub>coarse</sub>, ST<sub>coarse</sub>, SA<sub>coarse</sub> respectively using original AVE frames.  
-- Stage 2. test the model of S<sub>coarse</sub>, ST<sub>coarse</sub>, SA<sub>coarse</sub> respectively using original AVE frames.  
-- Stage 3. train the model of S<sub>fine</sub>, ST<sub>fine</sub>, SA<sub>fine</sub> respectively using the crop data of AVE.   
-- Stage 4. test the model of S<sub>fine</sub>, ST<sub>fine</sub>, SA<sub>fine</sub> using the crop data respectively and generate the pseudoGT of AVE dataset.   
-- Stage 5. train the model of STANet using the original AVE frames with generated pseudoGT.    
+- Stage 1. training the model of S<sub>coarse</sub>, ST<sub>coarse</sub>, SA<sub>coarse</sub> respectively using original AVE frames.  
+- Stage 2. testing the model of S<sub>coarse</sub>, ST<sub>coarse</sub>, SA<sub>coarse</sub> respectively using original AVE frames.  
+- Stage 3. training the model of S<sub>fine</sub>, ST<sub>fine</sub>, SA<sub>fine</sub> respectively using the crop data of AVE.   
+- Stage 4. testing the model of S<sub>fine</sub>, ST<sub>fine</sub>, SA<sub>fine</sub> using the crop data respectively and generate the pseudoGT of AVE dataset.   
+- Stage 5. training the model of STANet using the original AVE frames with generated pseudoGT.    
 ## Testing 
 After the preparation, run this commond  
 `python test.py`  
