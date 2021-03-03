@@ -69,8 +69,8 @@ class ImageFolder(Dataset):
     def __len__(self):
         return len(self.imgs)
 
-img_path = '.\\crop\\'
-save_path = 'result5\\'
+img_path = '.\crop\'
+save_path = 'result5\'
 test_set = ImageFolder(img_path, preprocess)
 test_loader = DataLoader(test_set, batch_size=batch_size,
                          num_workers=0, shuffle=False)
@@ -97,7 +97,7 @@ def hook_feature(module, input, output):
     features_blobs.append(output.data.cpu().numpy())
 
 to_pil = transforms.ToPILImage()
-model = torch.load('.\\modelAV\\30001.pt')
+model = torch.load('.\modelAV\30001.pt')
 
 model.cuda().eval()
 model._modules.get('layerV_down').register_forward_hook(hook_feature)
