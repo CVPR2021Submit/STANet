@@ -84,9 +84,9 @@ class ImageFolder(data.Dataset):
         return len(self.imgs)
 
 
-img_path = 'F:\\wgt\\Crop_data\\crop\\'
-aud_path = 'F:\\wgt\\AVE\\AVE_Dataset\\Audio2\\'
-save_path = 'result\\'
+img_path = '.\Crop_data\crop\'
+aud_path = '.\AVE\AVE_Dataset\Audio2\'
+save_path = 'result\'
 test_set = ImageFolder(img_path, aud_path, preprocess)
 test_loader = DataLoader(test_set, batch_size=batch_size,
                          num_workers=0, shuffle=False)
@@ -115,12 +115,12 @@ def hook_feature(module, input, output):
 
 
 to_pil = transforms.ToPILImage()
-model = torch.load('.\\modelAV\\14001.pt')
+model = torch.load('.\modelAV\stagefine.pt')
 
 model.cuda().eval()
 model._modules.get('layer1_4').register_forward_hook(hook_feature)
 
-filename = 'fenlei.txt'
+filename = 'class.txt'
 with torch.no_grad():
     with open(filename, 'w') as f:
         for num, [audio_pil, img_pil, index, label_name, file_name, img_name] in enumerate(test_loader):
