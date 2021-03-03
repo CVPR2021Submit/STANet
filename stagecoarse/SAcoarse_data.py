@@ -8,9 +8,9 @@ import h5py
 from PIL import Image
 from torchvision import transforms
 
-Audio_path = "F:\\wgt\\AVE\\AVE_Dataset\\audio2\\"
-Crop_path = 'E:\\crop\\crop\\'
-Forg_path_path = 'F:\\wgt\\AVE\\AVE_Dataset\\forg\\'
+Audio_path = ".\AVE\AVE_Dataset\audio2\"
+Crop_path = '.\crop\crop\'
+Forg_path_path = '.\AVE\AVE_Dataset\forgpath\'
 def make_dataset(ori_path):
     path_list = []
     sequ = -1
