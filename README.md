@@ -9,9 +9,9 @@ Thanks to the rapid advances in the deep learning techniques and the wide availa
 * soundfile  
 * scipy  
 ## Preparation
-1.Downloading the official pretrained model 
-`net = torch.hub.load('facebookresearch/WSL-Images','resnext101_32x8d_wsl')`
-of ResNeXt implemented in Pytorch, and [vggsound](https://github.com/hche11/VGGSound), `net = torch.load('vggsound_netvlad')`, if you want to train/test the network.  
+1.Downloading the official pretrained model  
+`net = torch.hub.load('facebookresearch/WSL-Images','resnext101_32x8d_wsl')` of ResNeXt implemented in Pytorch, and  
+[vggsound](https://github.com/hche11/VGGSound), `net = torch.load('vggsound_netvlad')`, if you want to train/test the network.  
 2.Downloading the [AVE](https://drive.google.com/file/d/1FjKwe79e0u96vdjIVwfRQ1V6SoDHe7kK/view) dataset(the training dataset), [AVAD](https://sites.google.com/site/minxiongkuo/home), [DIEM](https://thediemproject.wordpress.com/videos-and%c2%a0data/), [SumMe](https://gyglim.github.io/me/vsum/index.html#benchmark), [ETMD](http://cvsp.cs.ntua.gr/research/aveyetracking/), [Coutrot](http://antoinecoutrot.magix.net/public/databases.html) datasets(the testing dataset) in the folder of data for training or test.  
 ## Note 
 We use Fourier-transformed audio features as input, therefore, we need to use the function audiostft.py to convert the audio files (.wav) to get the audio features(.h5).
@@ -26,12 +26,12 @@ The current version of the code is very complicated, the current work will conti
 After the preparation, run this commond  
 `python test.py`  
 We use the 
-We provide the trained model file ([Baidu Netdisk](https://pan.baidu.com/s/1xhnAkeC_QinVLIF3g4MI5A), code:r0w0).
-The saliency maps are also available ([Baidu Netdisk](https://pan.baidu.com/s/1xhnAkeC_QinVLIF3g4MI5A), code:r0w0).  
+We provide the trained model file ([Baidu Netdisk](https://pan.baidu.com/s/1nvtJm1Z6-sHBaLPsEHhw4Q), code:6afo).
+The saliency maps are also available ([Baidu Netdisk](https://pan.baidu.com/s/1nvtJm1Z6-sHBaLPsEHhw4Q), code:6afo).  
 ## Evaluation
 We use the evaluation code in the paper of [STAVIS](https://github.com/atsiami/STAViS) for fair comparisons.   
 You may need to revise the algorithms, data_root, and maps_root defined in the main.m.   
-The saliency maps of the competitors(ITTI, GBVS, SCLI, AWS-D, SBF, WSS, MWS, WSSA) are provided ([Baidu Netdisk](https://pan.baidu.com/s/1xhnAkeC_QinVLIF3g4MI5A), code:r0w0).  
+The saliency maps of the competitors(ITTI, GBVS, SCLI, AWS-D, SBF, WSS, MWS, WSSA) are provided ([Baidu Netdisk](https://pan.baidu.com/s/1nvtJm1Z6-sHBaLPsEHhw4Q), code:6afo).  
 ### Quantitative comparisons:  
 ![Quantitative](https://github.com/CVPR2021Submit/STANet/blob/main/fig/cvpr2021.gif)  
 ### Qualitative comparisons:  
