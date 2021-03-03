@@ -51,16 +51,6 @@ class Logger:
                 os.system("rm -rf {}/image_ticks/*".format(log_dir))
             self.plot_vals = {}
             self.plot_times = {}
-            #def http_server():
-            #    Handler = QuietHandler
-            #    with socketserver.TCPServer(("", port), Handler) as httpd:
-            #        #print("serving at port", PORT)
-            #        httpd.serve_forever()
-            #x=threading.Thread(target=http_server)
-            #x.start()
-            #print("==============================================")
-            #print("visualize at http://host ip:{}/{}.html".format(port, self.log_dir))
-            #print("==============================================")
 
 
     def add_scalar(self, name, value, t_iter):
