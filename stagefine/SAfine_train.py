@@ -22,8 +22,7 @@ parser = argparse.ArgumentParser(description='AVE')
 parser.add_argument('--model_name', type=str, default='AV_att',
                     help='model name')
 parser.add_argument('--dir_order_train', type=str,
-                    # default='F:\\wgt\\AVE\\AVE_Dataset\\youyin\\',
-                    default='F:\\wgt\\Crop_data\\crop\\',
+                    default='.\Crop_data\crop\',
                     help='indices of training samples')
 parser.add_argument('--nb_epoch', type=int, default=300,
                     help='number of epoch')
@@ -33,7 +32,6 @@ parser.add_argument('--train', action='store_true', default=True,
                     help='train a new model')
 args = parser.parse_args()
 
-# 新建DataLoaderX类
 from torch.utils.data import DataLoader
 from prefetch_generator import BackgroundGenerator
 
