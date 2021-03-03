@@ -25,8 +25,7 @@ We use Fourier-transformed audio features as input, therefore, we need to use th
 ## Testing 
 After the preparation, run this commond  
 `python test.py`  
-We use the 
-We provide the trained model file ([Baidu Netdisk](https://pan.baidu.com/s/1nvtJm1Z6-sHBaLPsEHhw4Q), code:6afo).
+We provide the trained model file ([Baidu Netdisk](https://pan.baidu.com/s/1nvtJm1Z6-sHBaLPsEHhw4Q), code:6afo).  
 The saliency maps are also available ([Baidu Netdisk](https://pan.baidu.com/s/1nvtJm1Z6-sHBaLPsEHhw4Q), code:6afo).  
 ## Evaluation
 We use the evaluation code in the paper of [STAVIS](https://github.com/atsiami/STAViS) for fair comparisons.   
