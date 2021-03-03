@@ -103,10 +103,10 @@ def main():
             classes.append(row[0])
     classes = sorted(classes)
 
-    ori_path = 'F:\\wgt\\Data\\Audio3\\'
-    img2_path = 'F:\\wgt\\Data\\Img2\\'
-    forground_path = 'F:\\wgt\\Data\\forground_path'
-    background_path = 'F:\\wgt\\Data\\background_path'
+    ori_path = '.\Data\Audio3\'
+    img2_path = '.\Data\Img2\'
+    forground_path = '.\Data\forground_path'
+    background_path = '.\Data\background_path'
     test_set = ImageFolder(ori_path)
     batch_size = 3096
     test_loader = DataLoader(test_set, batch_size=batch_size,
