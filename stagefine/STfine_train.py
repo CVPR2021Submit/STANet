@@ -25,7 +25,7 @@ parser = argparse.ArgumentParser(description='AVE')
 parser.add_argument('--model_name', type=str, default='AV_att',
                     help='model name')
 parser.add_argument('--dir_order_train', type=str, 
-                    default = 'E:\\crop\\crop\\',
+                    default = '.\crop\crop\',
                     help='indices of training samples')
 parser.add_argument('--nb_epoch', type=int, default=300,
                     help='number of epoch')
@@ -47,7 +47,7 @@ class DataLoaderX(DataLoader):
 net_model = att_net().cuda()
 
 
-checkpoint = torch.load('.\\1001.pt').state_dict()
+checkpoint = torch.load('.\stagefines.pt').state_dict()
 net_dict = net_model.state_dict()
 pretrained_dict = {k: v for k, v in checkpoint.items() if k in net_dict}
 net_dict.update(pretrained_dict)
