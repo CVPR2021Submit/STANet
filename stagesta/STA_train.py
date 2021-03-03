@@ -23,7 +23,7 @@ parser = argparse.ArgumentParser(description='AVE')
 parser.add_argument('--model_name', type=str, default='AV_att',
                     help='model name')
 parser.add_argument('--dir_order_train', type=str,
-                    default='F:\\wgt\\AVE\\AVE_Dataset\\Img2\\',
+                    default='.\AVE\AVE_Dataset\Img2\',
                     help='indices of training samples')
 parser.add_argument('--nb_epoch', type=int, default=300,
                     help='number of epoch')
@@ -51,6 +51,8 @@ class DataLoaderX(DataLoader):
         return BackgroundGenerator(super().__iter__())
 
 net_model = att_Net()
+audiocls = torch.load('audiomodel.pt')
+audiocls.cuda().eval()
 '''checkpoint = torch.load('10001.pt').state_dict()
 net_dict = net_model.state_dict()
 pretrained_dict = {k: v for k, v in checkpoint.items() if k in net_dict}
@@ -88,8 +90,8 @@ def main(args):
 
             audio_inputs, video_inputs, target, labels = audio_inputs.unsqueeze(1).cuda(), video_inputs.cuda(), target.cuda(), labels.cuda()
             optimizer.zero_grad()
-            big_msk = net_model(audio_inputs, video_inputs)
-            # loss1 = loss_function_1(of, onoff)
+            switch = audiocls(audio_pil)
+            big_msk = net_model(audio_inputs, video_inputs, switch)
             loss2 = loss_function_2(big_msk, target)
             loss = loss2
             epoch_loss += loss.cpu().data.numpy()
