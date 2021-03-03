@@ -1,8 +1,8 @@
 import cv2 as cv
 import os
 
-path_video = 'D:\\wgtF\\Data\\AVE\\' 
-path_save = 'D:\\wgtF\\Data\\Img3\\' 
+path_video = .\Data\AVE\' 
+path_save = '.\Data\Img3\' 
 
 for root, dirs, files_video in os.walk(path_video):
     for files_name in files_video:
