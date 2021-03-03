@@ -36,7 +36,6 @@ parser.add_argument('--train', action='store_true', default=True,
                     help='train a new model')
 args = parser.parse_args()
 
-# 新建DataLoaderX类
 from torch.utils.data import DataLoader
 from prefetch_generator import BackgroundGenerator
 
@@ -61,9 +60,6 @@ writer = Logger("output/logs/{}".format(experiment_name),
                 clear=True, port=8000, palette=palette)
 loss_function = nn.CrossEntropyLoss().cuda()
 optimizer = torch.optim.SGD(net_model.parameters(), lr=1e-3, momentum=0.9)
-
-## 训练V分类
-
 
 def main(args):
     train_data = ImageFolder(args.dir_order_train)
