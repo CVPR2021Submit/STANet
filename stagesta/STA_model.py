@@ -12,6 +12,7 @@ import argparse
 class att_Net(nn.Module):
     def __init__(self):  # 128,128,512,29
         super(att_Net, self).__init__()
+        self.layerA_0 = nn.Sequential(*Amodel[:4])
         Amodel = SoundNet()
         checkpoint = torch.load('vggsound_netvlad.pth.tar')
         Amodel.load_state_dict(checkpoint['model_state_dict'])
@@ -28,7 +29,10 @@ class att_Net(nn.Module):
             32, 32, kernel_size=4, stride=2, padding=0)
         self.Aup3 = nn.ConvTranspose2d(
             32, 32, kernel_size=3, stride=1, padding=0)
-        self.atten_conv = nn.Conv2d(64, 32, 1)
+        self.atten_conv = nn.Conv2d(64, 64, 1)
+        self.attention = nn.Conv2d(64, 1, 1)
+        self.Vatten_conv = nn.Conv2d(64, 64, 1)
+        self.Afc = nn.Linear(8192, 2)
         net = torch.hub.load('facebookresearch/WSL-Images',
                              'resnext101_32x8d_wsl')
         net = list(net.children())
@@ -37,7 +41,7 @@ class att_Net(nn.Module):
         self.layerV_2 = net[5]
         self.layerV_3 = net[6]
         self.layerV_4 = net[7]
-        self.refineST = nn.Conv3d(32, 32, (3, 1, 1), padding=(0, 0, 0))
+        self.refineST = nn.Conv3d(32, 1, (3, 1, 1), padding=(0, 0, 0))
         self.downv4 = nn.Conv2d(2048, 32, 1)
         self.downv3 = nn.Conv2d(1024, 32, 1)
         self.downv2 = nn.Conv2d(512, 32, 1)
@@ -46,7 +50,7 @@ class att_Net(nn.Module):
         self.refineV22 = nn.Conv2d(64, 32, kernel_size=3, padding=1)
         self.predictF = nn.Conv2d(32, 1, 1)
 
-    def forward(self, audio, video):
+    def forward(self, audio, video, switch):
         layerV_0 = self.layerV_0(video.view(video.size(
             0)*video.size(1), video.size(2), video.size(3), video.size(4)))
         layerV_1 = self.layerV_1(layerV_0)
@@ -57,7 +61,7 @@ class att_Net(nn.Module):
         layerV_4 = layerV_4.view(video.size(
             0), video.size(1), layerV_4.size(1), layerV_4.size(2), layerV_4.size(3)).permute(0, 2, 1, 3, 4) # 3,32,3,12,12
         refineST = self.refineST(layerV_4)
-        layerST =  F.relu(layerV_4[:,:,1,:,:].unsqueeze(2) * F.sigmoid(refineST) + layerV_4[:,:,1,:,:].unsqueeze(2)).squeeze(2)
+        layerST = (layerV_4[:,:,1,:,:].unsqueeze(2) * F.sigmoid(refineST) + layerV_4[:,:,1,:,:].unsqueeze(2)).squeeze(2)
         layerV_4 = layerV_4[:,:,1,:,:].squeeze(2)
         layerA_0 = self.layerA_0(audio)
         layerA_1 = self.layerA_1(layerA_0)
@@ -70,7 +74,8 @@ class att_Net(nn.Module):
         Aup2 = self.Aup2(Aup1)
         Aup3 = self.Aup3(Aup2)
         atten_conv = self.atten_conv(torch.cat((Aup3, layerV_4), dim=1))
-        layerAV = F.relu(F.sigmoid(atten_conv) * layerV_4 + layerV_4)
+        attention = self.attention(atten_conv)
+        layerAV = F.relu(switch[0, 1] * F.sigmoid(attention) * layerV_4 + layerV_4)
         layerAVTF = self.AVTFuse(torch.cat((layerST, layerAV, layerV_4), 1))
         layerV_3 = self.downv3(layerV_3)
         layerV_3 = layerV_3.view(video.size(0), video.size(1), layerV_3.size(1), layerV_3.size(2), layerV_3.size(3))
@@ -84,4 +89,4 @@ class att_Net(nn.Module):
         refineV22 = self.refineV22(torch.cat((refineV33, layerV_2), 1))
         predictF = self.predictF(refineV22)
         predictF = F.upsample(predictF, size=video.size()[3:], mode='bilinear')
-        return predictF
+        return torch.sigmoid(predictF)
