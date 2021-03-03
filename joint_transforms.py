@@ -3,7 +3,6 @@ import random
 
 from PIL import Image, ImageOps
 
-
 class Compose(object):
     def __init__(self, transforms):
         self.transforms = transforms
@@ -13,7 +12,6 @@ class Compose(object):
         for t in self.transforms:
             img, mask = t(img, mask)
         return img, mask
-
 
 class RandomCrop(object):
     def __init__(self, size, padding=0):
