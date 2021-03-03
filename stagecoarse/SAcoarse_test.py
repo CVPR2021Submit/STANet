@@ -83,8 +83,8 @@ class ImageFolder(data.Dataset):
     def __len__(self):
         return len(self.imgs)
 
-img_path = 'D:\\wgt\\STVIS\\video_frames\\'
-aud_path = 'D:\\wgt\\STVIS\\train_audio\\'
+img_path = '.\video_frames\'
+aud_path = '.\train_audio\'
 save_path = 'result30\\'
 test_set = ImageFolder(img_path, aud_path, preprocess)
 test_loader = DataLoader(test_set, batch_size=batch_size,
@@ -115,7 +115,7 @@ def hook_feature(module, input, output):
 
 to_pil = transforms.ToPILImage()
 # model = att_Model()
-model = torch.load('D:\\wgt\\AVE_master\\modelAV\\12001.pt')
+model = torch.load('\modelAV\12001.pt')
 
 model.cuda().eval()
 model._modules.get('Vatten_conv').register_forward_hook(hook_feature)
