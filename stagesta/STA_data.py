@@ -10,10 +10,8 @@ from PIL import Image
 from torchvision import transforms
 import joint_transforms
 
-Audio_path = "F:\\wgt\\AVE\\AVE_Dataset\\audio2\\"
-Crop_path = 'E:\\crop\\crop\\'
-Forg_path = 'F:\\wgt\\Crop_data\\reviforg\\'
-Backg_path = 'F:\\wgt\\Crop_data\\revibackg\\'
+Audio_path = ".\AVE\AVE_Dataset\audio2\"
+Crop_path = '.\crop\crop\'
 def make_dataset(ori_path):
     path_list1 = []
     path_list2 = []
@@ -28,24 +26,11 @@ def make_dataset(ori_path):
             picname = os.listdir(picpath)
             for picp in range(2, len(picname)-2):
                 if picname[picp].endswith('.jpg'):
-                    
-                    if os.path.exists(Backg_path+ori_name[file]+'\\'+ficname[fs]+'\\'+str(int(picname[picp][0:-4])-1).zfill(4)+'_c.jpg') and os.path.exists(Backg_path+ori_name[file]+'\\'+ficname[fs]+'\\'+str(int(picname[picp][0:-4])).zfill(4)+'_c.jpg') and os.path.exists(Backg_path+ori_name[file]+'\\'+ficname[fs]+'\\'+str(int(picname[picp][0:-4])+1).zfill(4)+'_c.jpg'):
-                        onoff = 0
-                        ps = Backg_path+ori_name[file]+'\\'+ficname[fs]+'\\'+picname[picp][0:-4]+'_c.jpg'
-                        pv = os.path.join(picpath, picname[picp])
-                        pa = Audio_path+ori_name[file]+'\\'+ficname[fs]+'\\'+picname[picp][0:-4]+'_asp.h5'
-                        if os.path.exists(ps) and os .path.exists(pa):
-                            path_list1.append(picname[picp][0:-4]+'+'+pv+'+'+ps+'+'+pa+'+'+str(onoff)+'+'+str(file)+'+'+ori_name[file]+'+'+ficname[fs]+'+'+picname[picp][:-6]+'.jpg')
-
-                    if os.path.exists(Forg_path+ori_name[file]+'\\'+ficname[fs]+'\\'+str(int(picname[picp][0:-4])-1).zfill(4)+'_c.jpg') and os.path.exists(Forg_path+ori_name[file]+'\\'+ficname[fs]+'\\'+str(int(picname[picp][0:-4])).zfill(4)+'_c.jpg') and os.path.exists(Forg_path+ori_name[file]+'\\'+ficname[fs]+'\\'+str(int(picname[picp][0:-4])+1).zfill(4)+'_c.jpg'):    
-                        onoff = 1
-                        ps = Forg_path+ori_name[file]+'\\'+ficname[fs]+'\\'+picname[picp][0:-4]+'_c.jpg'
-                        pv = os.path.join(picpath, picname[picp])
-                        pa = Audio_path+ori_name[file]+'\\'+ficname[fs]+'\\'+picname[picp][0:-4]+'_asp.h5'
-                        if os.path.exists(ps) and os .path.exists(pa):
-                            path_list2.append(picname[picp][0:-4]+'+'+pv+'+'+ps+'+'+pa+'+'+str(onoff)+'+'+str(file)+'+'+ori_name[file]+'+'+ficname[fs]+'+'+picname[picp][:-6]+'.jpg')
-    #slice = random.sample(path_list1, len(path_list2))
-    #path_list = slice+path_list2
+                    ps = Backg_path+ori_name[file]+'\\'+ficname[fs]+'\\'+picname[picp][0:-4]+'_c.jpg'
+                    pv = os.path.join(picpath, picname[picp])
+                    pa = Audio_path+ori_name[file]+'\\'+ficname[fs]+'\\'+picname[picp][0:-4]+'_asp.h5'
+                    if os.path.exists(ps) and os .path.exists(pa):
+                        path_list1.append(picname[picp][0:-4]+'+'+pv+'+'+ps+'+'+pa+'+'+str(file)+'+'+ori_name[file]+'+'+ficname[fs]+'+'+picname[picp][:-6]+'.jpg')
     return path_list1
 
 class ImageFolder(Dataset):
