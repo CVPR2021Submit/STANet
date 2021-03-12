@@ -97,7 +97,7 @@ class att_Model(nn.Module):
         self.Vatten_conv = nn.Conv2d(128, 128, 1)
         self.fc = nn.Linear(128, 27)
 
-    def forward(self, audio, video):
+    def forward(self, audio, video, switch):
         layerV_0 = self.layerV_0(video)
         layerV_1 = self.layerV_1(layerV_0)
         layerV_2 = self.layerV_2(layerV_1)
@@ -119,7 +119,7 @@ class att_Model(nn.Module):
         atten_conv = self.atten_conv(torch.cat((Aup3, layerV_down), dim=1))
         attention = self.attention(atten_conv)
 
-        layerV_down = F.relu((F.sigmoid(attention) * layerV_down) + layerV_down)
+        layerV_down = F.relu((switch[:, 1].view(video.size(0),1,1,1) * F.sigmoid(attention) * layerV_down) + layerV_down)
 
         avpo = self.avpo(self.Vatten_conv(layerV_down))
         avpo = avpo.view(avpo.size(0), -1)
