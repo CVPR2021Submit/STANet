@@ -75,7 +75,7 @@ class att_Net(nn.Module):
         Aup3 = self.Aup3(Aup2)
         atten_conv = self.atten_conv(torch.cat((Aup3, layerV_4), dim=1))
         attention = self.attention(atten_conv)
-        layerAV = F.relu(.view(video.size(0),1,1,1) * F.sigmoid(attention) * layerV_4 + layerV_4)
+        layerAV = F.relu(switch.view(video.size(0),1,1,1) * F.sigmoid(attention) * layerV_4 + layerV_4)
         layerAVTF = self.AVTFuse(torch.cat((layerST, layerAV, layerV_4), 1))
         layerV_3 = self.downv3(layerV_3)
         layerV_3 = layerV_3.view(video.size(0), video.size(1), layerV_3.size(1), layerV_3.size(2), layerV_3.size(3))
