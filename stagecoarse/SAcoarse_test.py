@@ -116,8 +116,9 @@ def hook_feature(module, input, output):
 to_pil = transforms.ToPILImage()
 # model = att_Model()
 model = torch.load('\modelAV\12001.pt')
-
 model.cuda().eval()
+audiocls = torch.load('audiomodel.pt')
+audiocls.cuda().eval()
 model._modules.get('Vatten_conv').register_forward_hook(hook_feature)
 
 filename = 'fenlei.txt'
