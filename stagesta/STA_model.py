@@ -61,7 +61,7 @@ class att_Net(nn.Module):
         layerV_4 = layerV_4.view(video.size(
             0), video.size(1), layerV_4.size(1), layerV_4.size(2), layerV_4.size(3)).permute(0, 2, 1, 3, 4) # 3,32,3,12,12
         refineST = self.refineST(layerV_4)
-        layerST = (layerV_4[:,:,1,:,:].unsqueeze(2) * F.sigmoid(refineST) + layerV_4[:,:,1,:,:].unsqueeze(2)).squeeze(2)
+        layerST = F.relu(layerV_4[:,:,1,:,:].unsqueeze(2) * F.sigmoid(refineST) + layerV_4[:,:,1,:,:].unsqueeze(2)).squeeze(2)
         layerV_4 = layerV_4[:,:,1,:,:].squeeze(2)
         layerA_0 = self.layerA_0(audio)
         layerA_1 = self.layerA_1(layerA_0)
