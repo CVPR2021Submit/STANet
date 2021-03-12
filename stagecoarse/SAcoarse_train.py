@@ -41,6 +41,8 @@ class DataLoaderX(DataLoader):
         return BackgroundGenerator(super().__iter__())
 
 net_model = att_Model().cuda()
+audiocls = torch.load('audiomodel.pt')
+audiocls.cuda().eval()
 
 experiment_name = "debug1"
 palette = [0, 0, 0, 128, 0, 0, 0, 128, 0, 128, 128, 0, 0, 0, 128, 128, 0, 128, 0, 128, 128,
@@ -70,8 +72,9 @@ def main(args):
             ), audio_inputs.unsqueeze(1).cuda(), labels.cuda(), labela.cuda()
 
             optimizer.zero_grad()
+            switch = audiocls(audio_inputs)
             scoresFuse = net_model(
-                 audio_inputs, video_inputs)
+                 audio_inputs, video_inputs, switch)
             loss = loss_function(scoresFuse, labels)
             epoch_loss += loss.cpu().data.numpy()
             loss.backward()
