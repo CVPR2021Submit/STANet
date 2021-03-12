@@ -119,6 +119,8 @@ to_pil = transforms.ToPILImage()
 model = torch.load(.\AVE_master\modelAV\SAfine.pt')
 
 model.cuda().eval()
+audiocls = torch.load('audiomodel.pt')
+audiocls.cuda().eval()
 model._modules.get('Vatten_conv').register_forward_hook(hook_feature)
 
 filename = 'class.txt'
@@ -129,7 +131,8 @@ with torch.no_grad():
             weight_softmax = np.squeeze(params[-2].data.cpu().numpy())
             img_variable = Variable(img_pil).cuda()
             audio_variable = Variable(audio_pil).cuda()
-            outputs = model(audio_variable.unsqueeze(1), img_variable)
+            switch = audiocls(audio_variable)
+            outputs = model(audio_variable.unsqueeze(1), img_variable, switch)
             h_x = F.softmax(outputs[0], dim=1).data.squeeze()
             probs, idx = h_x.sort(1, True)  # 1行排序
             probs = probs[:, 0].cpu().numpy()
