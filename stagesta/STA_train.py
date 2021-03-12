@@ -90,7 +90,7 @@ def main(args):
 
             audio_inputs, video_inputs, target, labels = audio_inputs.unsqueeze(1).cuda(), video_inputs.cuda(), target.cuda(), labels.cuda()
             optimizer.zero_grad()
-            switch = audiocls(audio_pil)
+            switch = audiocls(audio_inputs)
             big_msk = net_model(audio_inputs, video_inputs, switch)
             loss2 = loss_function_2(big_msk, target)
             loss = loss2
